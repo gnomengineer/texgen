@@ -1,0 +1,24 @@
+\documentclass[a4paper, 10pt, fleqn]{article}
+\usepackage{custom}
+\usepackage{pageformatting}
+
+\graphicspath{{pdf/}{images/}}
+
+%============PAGE PROPERTIES=============
+\newcommand{\revisiondate}{\today}
+\newcommand{\documenttitle}{Topic } % used for title in title and subtitle pages
+\newcommand{\authors}{main author} %used for title page only
+\newcommand{\subauthors}{co-authors} %used for title page only
+\newcommand{\subtitle}{sub-topic} % used for title and subtitle pages
+\newcommand{\documentdesc}{document description}
+
+
+\begin{document}
+	\begin{titlepage}
+		\titleGM
+		\thispagestyle{empty}
+	\end{titlepage}
+	
+	\subtitlepage{subtitle}
+	
+\end{document}

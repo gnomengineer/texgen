@@ -1,0 +1,148 @@
+#!/bin/bash
+
+usage()
+{
+    echo ""
+    echo "Usage: texgen [OPTIONS] name"
+    echo ""
+    echo "generates a new directory called 'name' (unless TYPE==project) and generates a LaTeX template according to TYPE with the given 'name'."
+    echo "If no TYPE is given it just generates a plain LaTeX document"
+    echo "Additionally it copies some style files into the directory"
+    echo ""
+    echo "OPTIONS"
+    echo "-t TYPE       : specifies which type of content the tex structure should have (default=plain text)"
+    echo "-h, --help    : shows this help"
+    echo "-v, --version : shows the version of this tool"
+    echo ""
+    echo "TYPES"
+    echo "  beamer      : loads the latex class 'beamer' with standard settings"
+    echo "  sysspec     : loads SysSpec template into the directory"
+    echo "  sysspecGER  : same as sysspec but in german language"
+    echo "  concept     : loads 2 documents (SysSpec and PMP) into the directory"
+    echo "  conceptGer  : same as 'concept' but in german language"
+    echo "  project     : generates a directory called doc and copies PMP and SysSpec in english into it"
+    echo ""
+}
+
+version()
+{
+    echo "texgen 4.0 (beta) - by Daniel Foehn aka Gnomengineer"
+}
+
+error()
+{
+    echo " [EE] - Error: $1";
+    exit
+}
+
+info()
+{
+    echo " [II] - Info: $1";
+}
+
+command=$(basename $0)
+
+if [ $# -eq 0 ] 
+then
+    error "no parameter given. see $command -h for help"
+elif [ $# -gt 3 ]
+then
+    error "too many parameter given. see $command -h for help"
+fi
+
+template_dir=/usr/share/texgen/template
+custom_style="custom.sty"
+page_style="pageformatting.sty"
+file="plain_doc.tex"
+sysspec=0
+project=0
+
+while [ "$1" != "" ]
+do
+    case $1 in
+        -h | --help)
+            usage;
+            exit;
+            ;;
+        -v | --version)
+            version;
+            exit;
+            ;;
+        -t | --type)
+            shift
+            case $1 in
+                beamer)
+                    file="beamer.tex";
+                    ;;
+                sysspec)
+                    file="sysspec_eng.tex";
+                    sysspec=1;
+                    ;;
+                sysspecGER)
+                    file="sysspec_ger.tex";
+                    sysspec=1;
+                    ;;
+                concept)
+                    file="sysspec_eng.tex";
+                    pmp="pmp_eng.tex";
+                    sysspec=1;
+                    ;;
+                conceptGER)
+                    file="sysspec_ger.tex";
+                    pmp="pmp_ger.tex";
+                    sysspec=1;
+                    ;;
+                project)
+                    file="sysspec_eng.tex";
+                    pmp="pmp_eng.tex";
+                    project=1;
+                    sysspec=1;
+                    ;;
+                *)
+                    error "missing type for latex document. see $command -h for help";
+                    ;;
+            esac
+            ;;
+        *)
+            documentname=$1;
+            folder=$1;
+            ;;
+    esac
+    shift
+done
+
+if [ "$folder" == "" ]
+then
+    error "you need to give a directory name"
+fi
+
+if [ $project -eq 1 ]
+then
+    folder="doc"
+fi
+
+mkdir $folder
+
+if test -d $folder
+then
+    cd $folder 
+
+    if [ $sysspec -eq 1 ]
+    then
+        filename="SysSpec_$documentname"
+    else
+        filename=$documentname
+    fi
+
+    cp $template_dir/$file $filename.tex
+    if [ "$pmp" != "" ]
+    then
+        cp $template_dir/$pmp "PMP_$documentname.tex"
+    fi
+    cp $template_dir/$custom_style $custom_style
+    cp $template_dir/$page_style $page_style
+
+    info "latex structure successfully created!"
+else
+    error "folder could not be created" 
+fi

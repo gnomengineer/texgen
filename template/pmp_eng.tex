@@ -1,0 +1,64 @@
+\documentclass[a4paper, 10pt, fleqn]{article}
+\usepackage{custom}
+\usepackage{pageformatting}
+
+\graphicspath{{pdf/}{images/}}
+
+%============PAGE PROPERTIES=============
+\newcommand{\revisiondate}{\today}
+\newcommand{\documenttitle}{Projectname }%usedfortitleintitleandsubtitlepages
+\newcommand{\authors}{mainauthor}%usedfortitlepageonly
+\newcommand{\subauthors}{co-authors}%usedfortitlepageonly
+\newcommand{\subtitle}{PMP}%usedfortitleandsubtitlepages
+\newcommand{\documentdesc}{A concept for ...}
+
+
+\begin{document}
+	\begin{titlepage}
+		\titleGM
+		\thispagestyle{empty}
+	\end{titlepage}
+	
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	\clearpage
+	\section{Introduction}
+		\subsection{Purpose of Document}
+		\subsection{Target Audience}
+		\subsection{Versioning}
+			\begin{table}[h]
+				\centering
+				\begin{tabularx}{\textwidth}{|c|c|X|}
+				\hline
+				\rowcolor{shadecolor}\textbf{Version} & \textbf{Date} & \textbf{Comment}\\ \hline
+				V1.0 & \today & initial file \\ \hline
+				\end{tabularx}
+			\end{table}
+		\subsection{Glossary}
+			\begin{description}
+				\item[Abbreviation]- explanation
+			\end{description}
+
+\subtitlepage{project management}
+	\section{Project Organisation}
+		\textit{who does what, who is involved\ldots}
+	\section{Project Framework}
+		\textit{what are the milestones}
+	\section{Risk Management}
+		\textit{what are the project risks}
+	\section{Time Management}
+		\textit{when are the milestones and sprint releases}
+	\section{Testing}
+		\subsection{Test Environment}
+			\textit{with what is tested}
+		\subsection{Test Cases}
+			\textit{what is covered by the tests}
+			\subsubsection{Unit Tests}
+			\subsubsection{Blackbox Tests}
+
+\clearpage
+\thispagestyle{empty}
+	\section*{Appendix}
+\end{document}

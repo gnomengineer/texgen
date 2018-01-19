@@ -1,0 +1,69 @@
+\documentclass[a4paper, 10pt, fleqn]{article}
+\usepackage{custom}
+\usepackage{pageformatting}
+
+\graphicspath{{pdf/}{images/}}
+
+%============PAGE PROPERTIES=============
+\newcommand{\revisiondate}{\today}
+\newcommand{\documenttitle}{Projectname }%usedfortitleintitleandsubtitlepages
+\newcommand{\authors}{mainauthor}%usedfortitlepageonly
+\newcommand{\subauthors}{co-authors}%usedfortitlepageonly
+\newcommand{\subtitle}{SysSpec}%usedfortitleandsubtitlepages
+\newcommand{\documentdesc}{A concept for ...}
+
+
+\begin{document}
+	\begin{titlepage}
+		\titleGM
+		\thispagestyle{empty}
+	\end{titlepage}
+	
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	\clearpage
+	\section{Introduction}
+		\subsection{Purpose of Document}
+		\subsection{Target Audience}
+		\subsection{Versioning}
+			\begin{table}[h]
+				\centering
+				\begin{tabularx}{\textwidth}{|c|c|X|}
+				\hline
+				\rowcolor{shadecolor}\textbf{Version} & \textbf{Date} & \textbf{Comment}\\ \hline
+				V1.0 & \today & initial file \\ \hline
+				\end{tabularx}
+			\end{table}
+		\subsection{Glossary}
+			\begin{description}
+				\item[Abbreviation]- explanation
+			\end{description}
+
+\subtitlepage{SystemSpecification}
+	\section{Overview}
+		\textit{what is the target system}
+		\subsection{System Context}
+			\textit{the current/target system in a diagram}
+		\subsection{Starting Position}
+			\textit{what was the previous system}
+	\section{Requirements}
+		\subsection{Functional Requirements}
+			\textit{every requirement that needs coding}
+		\subsection{Non-Functional Requirements}
+			\textit{forms and GUIs}
+	\section{System Design}
+		\subsection{Implementation of ...}
+			\textit{how specific parts are implemented}
+		\subsection{Sequence Diagrams}
+			\textit{how certain sequences run}
+		\subsection{Class Diagrams}
+			\textit{how the class work together}
+			\subsubsection{Class Details}
+				\textit{short sentence what the class does}
+
+\clearpage
+\thispagestyle{empty}
+	\section*{Appendix}
+\end{document}

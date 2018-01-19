@@ -1,0 +1,73 @@
+\documentclass[a4paper, 10pt, fleqn]{article}
+\usepackage{custom}
+\usepackage{pageformatting}
+
+\usepackage[ngerman]{babel}
+%mathe packages
+\usepackage{amsmath}
+
+\graphicspath{{pdf/}{images/}}
+
+%============PAGE PROPERTIES=============
+\newcommand{\revisiondate}{\today}
+\newcommand{\documenttitle}{Projektname } % used for title in title and subtitle pages
+\newcommand{\authors}{main author} %used for title page only
+\newcommand{\subauthors}{co-authors} %used for title page only
+\newcommand{\subtitle}{Sys Spec} % used for title and subtitle pages
+\newcommand{\documentdesc}{System Spezifikationen von ...}
+
+
+\begin{document}
+	\begin{titlepage}
+		\titleGM
+		\thispagestyle{empty}
+	\end{titlepage}
+	
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	\clearpage
+	\section{Einführung}
+		\subsection{Zweck des Dokuments}
+		\subsection{Zielpublikum}
+		\subsection{Versionierung}
+			\begin{table}[h]
+				\centering
+				\begin{tabularx}{\textwidth}{|c|c|X|}
+				\hline
+				\rowcolor{shadecolor}\textbf{Version} & \textbf{Datum} & \textbf{Kommentar}\\ \hline
+				V1.0 & \today & initial file \\ \hline
+				\end{tabularx}
+			\end{table}
+		\subsection{Glossar}
+			\begin{description}
+				\item[Abkürzung]- Erklärung
+			\end{description}
+
+\subtitlepage{System Spezifikation}
+	\section{Übersicht}
+		\textit{Was kann das System}
+		\subsection{Systemkontext}
+			\textit{Wie das System im Umfeld integriert wird}
+		\subsection{Ausgangsposition}
+			\textit{wie war die Ausgangslage}
+	\section{Anforderung}
+		\subsection{funktionale Anforderungen}
+			\textit{alle Anforderungen, welche Code benötigen}
+		\subsection{nicht-funktionale Anforderungen}
+			\textit{Formulare und GUIs}
+	\section{Systemdesign}
+		\subsection{Umsetzung von ...}
+			\textit{wie spezifische Teile umgesetzt werden}
+		\subsection{Sequenzdiagramm}
+			\textit{wie ein spezieller Ablauf funktioniert}
+		\subsection{Klassendiagramm}
+			\textit{wie die Zusammenarbeit der Klassen aussieht}
+			\subsubsection{Klassdetails}
+				\textit{kurzer Satz zum Beschreiben der wichtigsten Klassen}
+
+\clearpage
+\thispagestyle{empty}
+	\section*{Anhang}
+\end{document}
