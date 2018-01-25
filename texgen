@@ -16,6 +16,7 @@ usage()
     echo ""
     echo "TYPES"
     echo "  beamer      : loads the latex class 'beamer' with standard settings"
+    echo "  plain       : loads a plain 'article' class (default)"
     echo "  single      : packs a system specification and a project management plan into a standalone folder"
     echo "  project     : same as 'single' but copies it into a folder called 'doc' which can be included in projects"
     echo ""
