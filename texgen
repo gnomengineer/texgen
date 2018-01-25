@@ -16,11 +16,8 @@ usage()
     echo ""
     echo "TYPES"
     echo "  beamer      : loads the latex class 'beamer' with standard settings"
-    echo "  sysspec     : loads SysSpec template into the directory"
-    echo "  sysspecGER  : same as sysspec but in german language"
-    echo "  concept     : loads 2 documents (SysSpec and PMP) into the directory"
-    echo "  conceptGer  : same as 'concept' but in german language"
-    echo "  project     : generates a directory called doc and copies PMP and SysSpec in english into it"
+    echo "  single      : packs a system specification and a project management plan into a standalone folder"
+    echo "  project     : same as 'single' but copies it into a folder called 'doc' which can be included in projects"
     echo ""
 }
 
