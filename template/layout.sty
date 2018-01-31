@@ -1,0 +1,71 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{layout}[2018/01/31 commands for a scientific page layout]
+
+%==========TITLE=========================
+\newcommand*{\titleGM}{\begingroup % Create the command for including the title page in the document
+\hbox{ % Horizontal box
+\hspace*{0.2\textwidth} % Whitespace to the left of the title page
+\rule{1pt}{\textheight} % Vertical line
+\hspace*{0.05\textwidth} % Whitespace between the vertical line and title page text
+\parbox[b]{0.75\textwidth}{ % Paragraph box which restricts text to less than the width of the page
+
+{\noindent\huge\bfseries \documenttitle}\\% Title
+{\noindent\huge\bfseries \subtitle}\\[2\baselineskip] % Subtitle
+{\large \textit{\documentdesc}}\\[4\baselineskip] % Tagline or further description
+{\Large \textsc{\authors}}\\[2\baselineskip]
+{\large \textsc{\textit{\subauthors}}}\\[8\baselineskip] % Author name
+{\large \textsc{\textit{Betreuender Dozent: \dozent}}}\\[\baselineskip]
+\includegraphics[width=.5\textwidth]{\titleimage}\\[2\baselineskip]
+\vspace{0.1\textheight} % Whitespace between the title block and the publisher
+{\noindent \revisiondate}\\[\baselineskip] 
+}}
+\endgroup}
+%========================================
+
+%============SUBTITLE=======================
+\newcommand*{\subtitleGM}[1]{
+\begingroup
+\hbox{
+\hspace*{.125\textwidth}
+\parbox[b]{0.75\textwidth}{
+    \centering
+	\vspace*{0.4\textheight}
+	{\noindent\huge\bfseries #1}\\[\baselineskip]
+	{\large \textit{\documenttitle\ - \authors}}\\
+	\noindent\rule{0.75\textwidth}{0.4pt}\\[2\baselineskip]
+}
+}\endgroup}
+%========================================
+\newcommand{\subtitlepage}[1]{\begingroup
+	\clearpage
+    \addtocontents{toc}{%
+        \protect\vspace{1.5em}% 
+        \protect\hspace{1em}{\large \textbf{#1}}\protect\par
+        \protect\vspace{-0.5em}%
+    }
+	\thispagestyle{empty}
+	\subtitleGM{#1}
+	\clearpage
+	\thispagestyle{fancy}
+\endgroup}
+%========================================
+
+%==========HEADER & FOOTER===============
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\documenttitle - \subtitle}
+\rhead{\authors}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{\revisiondate}
+%========================================
+
+%==========TABLE OF CONTENT==============
+\usepackage{tocloft}
+
+\cftsetindents{section}{0.5in}{0.5in}
+\cftsetindents{subsection}{0.5in}{0.5in}
+\cftsetindents{subsubsection}{0.5in}{0.5in}
+\cftsetindents{paragraph}{0.5in}{0.5in}
+%========================================
+\endinput
