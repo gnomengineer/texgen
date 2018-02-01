@@ -1,0 +1,82 @@
+\documentclass[a4paper, 10pt, fleqn]{article}
+\usepackage{custom}
+\usepackage{layout}
+\usepackage{git}
+\usepackage{tikz}
+\usepackage{aeguill}
+\usepackage{import}
+\usepackage{pdfpages}
+
+\usepackage[ngerman]{babel}
+%mathe packages
+\usepackage{amsmath}
+
+%table packages
+\usepackage{booktabs}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usepackage{tablefootnote}
+
+\graphicspath{{images/}{uml/}}
+
+% no indent in front of paragraph
+\setlength{\parindent}{0pt}
+
+%============PAGE PROPERTIES=============
+\newcommand{\revisiondate}{\today}
+\newcommand{\documenttitle}{titel} % used for title in title and subtitle pages
+\newcommand{\authors}{name vorname} %used for title page only
+\newcommand{\subauthors}{name vorname} %used for title page only
+\newcommand{\subtitle}{untertitel} % used for title and subtitle pages
+\newcommand{\documentdesc}{kurzbeschreibung}
+\newcommand{\dozent}{name vorname}
+\newcommand{\titleimage}{titelbild.png}
+
+\begin{document}
+	\begin{titlepage}
+		\titleGM
+		\thispagestyle{empty}
+	\end{titlepage}
+	\input{redlichkeit}
+     %--- Management Summary ---
+    \clearpage
+    \input{abstract} 
+     
+    \clearpage 
+    \tableofcontents
+    
+    %--- Overview of document ---
+    \clearpage
+    \input{introduction.tex}
+    
+    %--- Start of Vision ---
+    \subtitlepage{Vision - Projektauftrag}
+    \subimport{vision/}{vision}
+    
+    %--- Start of PMP ---
+    \subtitlepage{Projektmanagement}
+    \subimport{pmp/}{pmp}
+    
+    %--- Start of Sys Spec ---
+    \subtitlepage{System Spezifikation}
+    \subimport{sysspec/}{sysspec}
+    
+    %--- Fazit ---
+    \clearpage
+   	\input{ausblick}
+    \input{fazit}
+    
+    %BIBLIOGRAPHY
+    \clearpage
+    \nocite{*}
+    \bibliography{bibliography}
+    \bibliographystyle{apacite}
+    
+    %--- Start of Lists ---
+    \clearpage
+    \listoffigures
+    \listoftables
+    
+    %--- Start of Appendix ---
+    \clearpage
+   	\subimport{appendix/}{appendix}
+\end{document}
