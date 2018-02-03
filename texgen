@@ -114,7 +114,7 @@ then
     error "you need to give a directory name"
 fi
 
-if [ $project -eq 1 ]
+if [ $usesProject ]
 then
     folder="doc"
 fi
@@ -124,9 +124,8 @@ then
     template=$template$language
 fi
 
-mkdir $folder
 
-if test -d $folder
+if test -d $folder || mkdir $folder
 then
     cd $folder 
 
