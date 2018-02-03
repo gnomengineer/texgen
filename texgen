@@ -41,6 +41,22 @@ info()
     echo " [II] - Info: $1";
 }
 
+copyTemplate()
+{
+    if ! (test -d $folder && cd $folder )
+    then
+        error "Ooops! It seems there is no folder"
+    fi
+
+    if test -d $1
+    then
+        cp -r $1/* $folder/
+        mv $folder/$template.tex $folder/$documentname
+    else
+        cp $1.tex $folder/$documentname
+    fi
+}
+
 command=$(basename $0)
 
 if [ $# -eq 0 ] 
@@ -101,7 +117,7 @@ do
         *)
             if [ $# -eq 1 ]
             then
-                documentname=$1;
+                documentname=$1.tex;
                 folder=$1;
             fi
             ;;
@@ -127,8 +143,6 @@ fi
 
 if test -d $folder || mkdir $folder
 then
-    cd $folder 
-
     case $template in
         scientific | beamer | plain)
             copyTemplate $template_dir/$template
@@ -139,13 +153,13 @@ then
                 copyTemplate ~/.texgen/$template
             elif test -e ~/.texgen/$template.tex
             then
-                copyTemplate ~/.texgen/$template.tex
+                copyTemplate ~/.texgen/$template
             elif test -d /usr/share/texgen/custom/$template
             then
                 copyTemplate /usr/share/texgen/custom/$template
             elif test -e /usr/share/texgen/custom/$template.tex
             then
-                copyTemplate /usr/share/texgen/custom/$template.tex
+                copyTemplate /usr/share/texgen/custom/$template
             else
                 error "custom template not found. Make sure it is in either ~/.texgen/ or /usr/share/texgen/custom"
             fi
