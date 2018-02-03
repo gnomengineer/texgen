@@ -95,6 +95,8 @@ do
             ;;
         --language)
             usesLanguage=true
+            shift
+            language=$1
             ;;
         *)
             if [ $# -eq 1 ]
@@ -115,6 +117,11 @@ fi
 if [ $project -eq 1 ]
 then
     folder="doc"
+fi
+
+if [ $usesLanguage ]
+then
+    template=$template$language
 fi
 
 mkdir $folder
