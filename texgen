@@ -46,17 +46,19 @@ command=$(basename $0)
 if [ $# -eq 0 ] 
 then
     error "no parameter given. see $command -h for help"
-elif [ $# -gt 3 ]
-then
-    error "too many parameter given. see $command -h for help"
 fi
 
 template_dir=/usr/share/texgen/template
 custom_style="custom.sty"
-page_style="pageformatting.sty"
-file="plain_doc.tex"
-sysspec=0
-project=0
+page_style="layout.sty"
+git_style="git.sty"
+
+template='plain'
+usesGit=false
+usesLayout=false
+usesProject=false
+usesLanguage=false
+usesLib=true
 
 while [ "$1" != "" ]
 do
@@ -69,44 +71,37 @@ do
             version;
             exit;
             ;;
-        -t | --type)
+        -b | --beamer)
+            template='beamer'
+            ;;
+        -s | --scientific)
+            template='scientific'
+            ;;
+        --custom)
             shift
-            case $1 in
-                beamer)
-                    file="beamer.tex";
-                    ;;
-                sysspec)
-                    file="sysspec_eng.tex";
-                    sysspec=1;
-                    ;;
-                sysspecGER)
-                    file="sysspec_ger.tex";
-                    sysspec=1;
-                    ;;
-                concept)
-                    file="sysspec_eng.tex";
-                    pmp="pmp_eng.tex";
-                    sysspec=1;
-                    ;;
-                conceptGER)
-                    file="sysspec_ger.tex";
-                    pmp="pmp_ger.tex";
-                    sysspec=1;
-                    ;;
-                project)
-                    file="sysspec_eng.tex";
-                    pmp="pmp_eng.tex";
-                    project=1;
-                    sysspec=1;
-                    ;;
-                *)
-                    error "missing type for latex document. see $command -h for help";
-                    ;;
-            esac
+            template=$1
+            ;;
+        -g | --git)
+            usesGit=true
+            ;;
+        -L | --layout)
+            usesLayout=true
+            ;;
+        --no-library)
+            usesLib=false
+            ;;
+        -p | --project)
+            usesProject=true
+            ;;
+        --language)
+            usesLanguage=true
             ;;
         *)
-            documentname=$1;
-            folder=$1;
+            if [ $# -eq 1 ]
+            then
+                documentname=$1;
+                folder=$1;
+            fi
             ;;
     esac
     shift
