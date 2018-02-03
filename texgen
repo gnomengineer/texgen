@@ -3,9 +3,9 @@
 usage()
 {
     echo ""
-    echo "Usage: texgen [-s|-b|--plain|--custom] [-g,-L,--no-library] [-p,--language] name"
+    echo "Usage: texgen [-s|-b|--plain|--custom] [-g,-L,--no-library] [-p,--language] NAME"
     echo ""
-    echo "generates a folder called 'name' with a 'name'.tex file based on templates in it."
+    echo "generates a folder called NAME with a NAME.tex file based on templates in it."
     echo ""
     echo "TEMPLATE OPTIONS"
     echo " -b, --beamer     : adds the template for a beamer class"
