@@ -129,22 +129,20 @@ if test -d $folder || mkdir $folder
 then
     cd $folder 
 
-    if [ $sysspec -eq 1 ]
-    then
-        filename="SysSpec_$documentname"
-    else
-        filename=$documentname
-    fi
-
-    cp $template_dir/$file $filename.tex
-    if [ "$pmp" != "" ]
-    then
-        cp $template_dir/$pmp "PMP_$documentname.tex"
-    fi
-    cp $template_dir/$custom_style $custom_style
-    cp $template_dir/$page_style $page_style
-
-    info "latex structure successfully created!"
-else
-    error "folder could not be created" 
+    case $template in
+        scientific | beamer | plain)
+            copyTemplate $template_dir/$template
+            ;;
+        *)
+            if test -e ~/.texgen/$template
+            then
+                copyTemplate ~/.texgen/$template
+            elif test -e /usr/share/texgen/custom/$template
+            then
+                copyTemplate /usr/share/texgen/custom/$template
+            else
+                error "custom template not found. Make sure it is in either ~/.texgen/ or /usr/share/texgen/custom"
+            fi
+            ;;
+    esac
 fi
