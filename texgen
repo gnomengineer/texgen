@@ -134,12 +134,18 @@ then
             copyTemplate $template_dir/$template
             ;;
         *)
-            if test -e ~/.texgen/$template
+            if test -d ~/.texgen/$template
             then
                 copyTemplate ~/.texgen/$template
-            elif test -e /usr/share/texgen/custom/$template
+            elif test -e ~/.texgen/$template.tex
+            then
+                copyTemplate ~/.texgen/$template.tex
+            elif test -d /usr/share/texgen/custom/$template
             then
                 copyTemplate /usr/share/texgen/custom/$template
+            elif test -e /usr/share/texgen/custom/$template.tex
+            then
+                copyTemplate /usr/share/texgen/custom/$template.tex
             else
                 error "custom template not found. Make sure it is in either ~/.texgen/ or /usr/share/texgen/custom"
             fi
