@@ -1,0 +1,95 @@
+.\" Manpage for texgen
+.\" Contact troopa.der.pate@gmail.com to correct errors or typos
+.TH man 8 "04 Oct 2019" "1.0" "texgen man page"
+.SH NAME
+texgen \- generates a LaTeX document structure
+.SH SYNOPSIS
+texgen [OPTIONS] FILENAME
+.SH DESCRIPTION
+.B texgen
+generates a
+.IR LaTeX
+file structure with the main .tex file called
+.IR FILENAME
+within a given folder
+.IR FILENAME .
+If the option
+.B -p
+is given the generated files are stored in a folder called
+.IR doc
+instead.
+.PP
+Default templates are stored under
+.IR /usr/share/texgen/ .
+Custom templates can either be stored under
+.IR ~/.texgen/folder, 
+.IR ~/.texgen/<template>.tex
+or
+.IR /usr/share/texgen/custom .
+
+.SH OPTIONS
+.SS Generic Program Information
+.TP
+.BR \-h ", " \-\-help
+prints a short help and exit.
+.TP
+.BR \-v ", " \-\-version
+prints the version of
+.B texgen
+and exit.
+.SS Template Options
+.TP
+.BR \-b ", " \-\-beamer
+takes the default beamer template
+.TP
+.BR \-s ", " \-\-scientific
+takes the default scientific template
+.TP
+.BR \-\-plain
+adds a plain article class
+.TP
+.BR \-\-custom=TEMPLATE
+takes the custom template with name
+.IR TEMPLATE .
+.SS Style Options
+.TP
+.BR \-g ", " \-\-git
+adds
+.I git.sty
+to the document structure. This provides git revision support
+.TP
+.BR \-L ", " \-\-layout
+adds
+.I layout.sty
+to the document structure. This provides title page and other layouting commands
+.TP
+.BR \-\-no\-library
+does not include 
+.I custom.sty
+into the document structure. By default 
+.I custom.sty
+is always added
+.SS Other Options
+.TP
+.BR \-p ", " \-\-project
+adds the document structure into a separate folder
+.IR doc/ .
+.TP
+.BR \-\-language=LANG
+uses the selected template with the 
+.I LANG
+short name. The naming for translations must follow a strict pattern
+.I <templatename>_LANG.tex
+where 
+.I LANG
+is the language code by ISO 639-1.
+.SH EXAMPLES
+
+.SH REPORTING BUGS
+Bugs can be reported as issue on the github page
+.PP
+https://github.com/gnomengineer/texgen/issues
+.SH AUTHOR
+Daniel Foehn (troopa.der.pate@gmail.com)
+.SH COPYRIGHT
+Copyright (C) 2019 Gnomengineer, Licensed under MIT
