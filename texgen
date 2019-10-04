@@ -55,6 +55,19 @@ copyTemplate()
     else
         cp $1.tex $folder/$documentname
     fi
+
+    if $usesLib;
+    then
+        cp "$template_dir/$custom_style" "$folder/"
+    fi
+    if $usesLayout;
+    then
+        cp "$template_dir/$page_style" "$folder/"
+    fi
+    if $usesGit;
+    then
+        cp "$template_dir/$git_style" "$folder/"
+    fi
 }
 
 command=$(basename $0)
@@ -130,12 +143,12 @@ then
     error "you need to give a directory name"
 fi
 
-if [ $usesProject ]
+if $usesProject
 then
     folder="doc"
 fi
 
-if [ $usesLanguage ]
+if $usesLanguage
 then
     template=$template$language
 fi

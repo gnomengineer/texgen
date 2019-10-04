@@ -46,7 +46,7 @@ takes the default beamer template
 takes the default scientific template
 .TP
 .BR \-\-plain
-adds a plain article class
+adds a plain article class. This is the default option
 .TP
 .BR \-\-custom=TEMPLATE
 takes the custom template with name
