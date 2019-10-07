@@ -1,7 +1,7 @@
 \documentclass[a4paper, 10pt, fleqn]{article}
-\usepackage{custom}
-\usepackage{layout}
-\usepackage{git}
+%including custom.sty
+%including layout.sty
+%including git.sty
 \usepackage{tikz}
 \usepackage{aeguill}
 \usepackage{import}
@@ -29,11 +29,11 @@
 \newcommand{\subtitle}{untertitel} % used for title and subtitle pages
 \newcommand{\documentdesc}{kurzbeschreibung}
 \newcommand{\dozent}{name vorname}
-\newcommand{\titleimage}{titelbild.png}
+\newcommand{\titleimage}{example-image}
 
 \begin{document}
 	\begin{titlepage}
-		\titleGM
+        %insert titleGM
 		\thispagestyle{empty}
 	\end{titlepage}
 	\input{redlichkeit}
@@ -49,15 +49,15 @@
     \input{introduction.tex}
     
     %--- Start of Vision ---
-    \subtitlepage{Vision - Projektauftrag}
+    %insert subtitlepage
     \subimport{vision/}{vision}
     
     %--- Start of PMP ---
-    \subtitlepage{Projektmanagement}
+    %insert subtitlepage
     \subimport{pmp/}{pmp}
     
     %--- Start of Sys Spec ---
-    \subtitlepage{System Spezifikation}
+    %insert subtitlepage
     \subimport{sysspec/}{sysspec}
     
     %--- Fazit ---
