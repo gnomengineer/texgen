@@ -50,12 +50,13 @@ copyTemplate()
 
     if test -d "$1"
     then
-        cp -r "$1/*" "$folder/"
-        info "moved template to target folder"
+        cp -r $1/* "$folder/"
+        info "created document from template (${1}) in target folder (${folder})"
         mv "$folder/$template.tex" "$folder/$documentname"
-        info "renamed .tex to given name"
+        info "renamed ${template}.tex to given name (${documentname})"
     else
         cp "$1.tex" "$folder/$documentname"
+        info "created document from template with given name (${documentname})"
     fi
 
     if $usesLib;
