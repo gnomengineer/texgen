@@ -1,0 +1,8 @@
+#!/bin/bash
+
+folder="/usr/share/texgen"
+cp texgen /usr/bin/texgen
+if test -d $folder || mkdir $folder
+then
+    cp -r template/ $folder
+fi
