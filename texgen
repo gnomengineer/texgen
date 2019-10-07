@@ -62,11 +62,15 @@ copyTemplate()
     if $usesLib;
     then
         info "custom.sty copied."
+        sed -i "s/%including custom.sty/\\\\usepackage{custom}/g" "$folder/$documentname"
         cp "$template_dir/$custom_style" "$folder/"
     fi
     if $usesLayout;
     then
         info "layout.sty copied."
+        sed -i "s/%including layout.sty/\\\\usepackage{layout}/g" "$folder/$documentname"
+        sed -i "s/%insert titleGM/\\\\titleGM/g" "$folder/$documentname"
+        sed -i "s/%insert subtitlepage/\\\\subtitlepage{subtitle}/g" "$folder/$documentname"
         cp "$template_dir/$page_style" "$folder/"
     fi
 }
