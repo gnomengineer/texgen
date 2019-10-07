@@ -43,30 +43,30 @@ info()
 
 copyTemplate()
 {
-    if ! (test -d $folder && cd $folder )
+    if ! (test -d "$folder" && cd "$folder" )
     then
         error "Ooops! It seems there is no folder"
     fi
 
-    if test -d $1
+    if test -d "$1"
     then
-        cp -r $1/* $folder/
-        mv $folder/$template.tex $folder/$documentname
+        cp -r "$1/*" "$folder/"
+        info "moved template to target folder"
+        mv "$folder/$template.tex" "$folder/$documentname"
+        info "renamed .tex to given name"
     else
-        cp $1.tex $folder/$documentname
+        cp "$1.tex" "$folder/$documentname"
     fi
 
     if $usesLib;
     then
+        info "custom.sty copied."
         cp "$template_dir/$custom_style" "$folder/"
     fi
     if $usesLayout;
     then
+        info "layout.sty copied."
         cp "$template_dir/$page_style" "$folder/"
-    fi
-    if $usesGit;
-    then
-        cp "$template_dir/$git_style" "$folder/"
     fi
 }
 
@@ -158,21 +158,21 @@ if test -d $folder || mkdir $folder
 then
     case $template in
         scientific | beamer | plain)
-            copyTemplate $template_dir/$template
+            copyTemplate "$template_dir/$template"
             ;;
         *)
-            if test -d ~/.texgen/$template
+            if test -d "~/.texgen/$template"
             then
-                copyTemplate ~/.texgen/$template
-            elif test -e ~/.texgen/$template.tex
+                copyTemplate "${HOME}/.texgen/$template"
+            elif test -e "${HOME}/.texgen/$template.tex"
             then
-                copyTemplate ~/.texgen/$template
-            elif test -d /usr/share/texgen/custom/$template
+                copyTemplate "${HOME}/.texgen/$template"
+            elif test -d "/usr/share/texgen/custom/$template"
             then
-                copyTemplate /usr/share/texgen/custom/$template
-            elif test -e /usr/share/texgen/custom/$template.tex
+                copyTemplate "/usr/share/texgen/custom/$template"
+            elif test -e "/usr/share/texgen/custom/$template.tex"
             then
-                copyTemplate /usr/share/texgen/custom/$template
+                copyTemplate "/usr/share/texgen/custom/$template"
             else
                 error "custom template not found. Make sure it is in either ~/.texgen/ or /usr/share/texgen/custom"
             fi
