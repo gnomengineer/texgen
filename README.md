@@ -1,17 +1,23 @@
-# texgen
-A computer app that allows easier construction of LaTeX documents based on templates.
+# texgen 1.0
+A computer shell script that allows easier construction of LaTeX documents based on templates.
+
+latest version 1.0: developed by gnomengineer
 
 ## Installation
 To install everything required to run `texgen` run the install script.
+Download the git repository previously onto your computer.
 
-`$: sudo ./install`
+`git clone https://github.com/gnomengineer/texgen.git /tmp/texgen_install; cd /tmp/texgen_install`  
+`sudo ./install`
 
 This copies the *templates* to */usr/share/texgen*, the texgen to */usr/bin/texgen* and installs the man page.
 
 ## Usage
-the script is used simply by executing this command
+The script's simplest execution is done by the command below.
+This creates a LaTeX document with custom library added.
+(Creates a folder *myDocument* containing *myDocument.tex* and *custom.sty*)
 
-`$: texgen [OPTIONS] <documentname>`
+`texgen myDocument`
 
 Call the `-h`,`--help` option or manual page `man texgen` to find more information
 
