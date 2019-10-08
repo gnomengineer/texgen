@@ -1,0 +1,17 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{git}[2018/01/31 package to include git commit information in the doc]
+
+\usepackage{gitinfo}
+%==========VERSIONING====================
+\newcommand{\gitversioning}{
+\begin{table}[h]
+    \centering
+    \begin{tabularx}{\textwidth}{|c|c|X|X|}
+        \hline
+        \rowcolor{shadecolor}\textbf{Version} & \textbf{Datum } & \textbf{Autor} & \textbf{Git Hash}\\ \hline
+        \gitVtag & \gitAuthorDate & \gitAuthorName & \gitAbbrevHash
+    \end{tabularx}
+\end{table}
+}
+%========================================
+\endinput
